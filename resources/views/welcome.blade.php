@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -29,30 +29,23 @@
 
 
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-{{--            @if (Route::has('login'))--}}
-{{--                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">--}}
-{{--                    @auth--}}
-{{--                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>--}}
-{{--                    @else--}}
-{{--                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>--}}
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
 
-{{--                        @if (Route::has('register'))--}}
-{{--                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>--}}
-{{--                        @endif--}}
-{{--                    @endauth--}}
-{{--                </div>--}}
-{{--            @endif--}}
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
 
-           @foreach($tasks as $task)
-                <div class="card" style=" width: 18rem; ">
-                    <img class="card-img-top" src="https://picsum.photos/id/237/200/300" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$task['name']}}</h5>
-                        <p class="card-text">{{$task['description']}}</p>
-                        <a href="#" class="btn btn-primary">End at: {{$task['end_time']}}</a>
-                    </div>
-                </div>
-            @endforeach
+                    @else
+                       <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                    @endif
+                   @endauth
+              </div>
+            @endif
+
+
         </div>
 
        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

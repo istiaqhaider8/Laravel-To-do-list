@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEndTimeColumnToTasksTable extends Migration
+class CreateTaggableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddEndTimeColumnToTasksTable extends Migration
      */
     public function up()
     {
-       Schema::table('tasks',function (Blueprint $table){
-        $table->timestamp('end_time')->nullable();
-       });
+        Schema::create('_taggable', function (Blueprint $table) {
+            $table->id();
+            $table->integer('tag_id');
+            $table->string('Taggable_id');
+            $table->string('Taggable_type');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +29,6 @@ class AddEndTimeColumnToTasksTable extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('end_time');
-        });
+        Schema::dropIfExists('_taggable');
     }
 }

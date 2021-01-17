@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdColumnToTasksTalble extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class AddUserIdColumnToTasksTalble extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-
-            $table->foreignId('user_id')->constrained();
-
+        Schema::create('_settings', function (Blueprint $table) {
+            $table->key();
+            $table->integer('value');
+            $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -26,10 +27,6 @@ class AddUserIdColumnToTasksTalble extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('_settings');
     }
 }
